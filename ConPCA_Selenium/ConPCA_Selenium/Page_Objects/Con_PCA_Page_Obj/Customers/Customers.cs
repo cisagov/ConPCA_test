@@ -9,6 +9,7 @@ using OpenQA.Selenium.Support.UI;
 using CSET_Selenium.Enums.Con_PCA;
 using CSET_Selenium.Enums;
 using CSET_Selenium.ConPCA_Repository.Con_PCA;
+using System.Threading;
 
 namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
 {
@@ -171,7 +172,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
         {
             get
             {
-                return WaitUntilElementIsVisible(By.XPath("//span[text() =' Delete Customer ']"));
+                return WaitUntilElementIsClickable(By.XPath("//span[text() =' Delete Customer ']"));
             }
         }
 
@@ -334,8 +335,18 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
 
         private void ClickDeleteCustomerButton()
         {
-            WaitUntilElementIsClickable(DeleteCustomerButton, 3);
-            ClickWhenClickable(DeleteCustomerButton);
+
+            String buttonDisabled = DeleteCustomerButton.FindElement(By.XPath("parent::button")).GetAttribute("disabled");
+            int count = 0;
+            do
+            {
+                Thread.Sleep(1);
+                count++;
+                buttonDisabled = DeleteCustomerButton.FindElement(By.XPath("parent::button")).GetAttribute("disabled");
+            } while(buttonDisabled != null && count <10);
+
+            //WaitUntilElementIsClickable(DeleteCustomerButton, 3);
+            DeleteCustomerButton.Click();
         }
 
         private void ClickConfirmDeleteYesButton()
@@ -440,10 +451,10 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
         public void DeleteCustomersByIdentifier(String id)
         {
             ClickCustomersTableEditByIdentifier(id);
-            DeleteContactByRowNumber(1);
+            //DeleteContactByRowNumber(1);
             ClickDeleteCustomerButton();
             ClickConfirmDeleteYesButton();
-            ClickSaveButton();
+            //ClickSaveButton();
             ClickOKButton();          
         }
 
