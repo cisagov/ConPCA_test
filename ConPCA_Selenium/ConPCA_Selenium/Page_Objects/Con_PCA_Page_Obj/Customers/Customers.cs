@@ -486,9 +486,9 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
                 }
             }
         }
-        public void RetireTemplate(String templateName, String retireReason)
+        public void RetireCustomer(String customerName, String retireReason)
         {
-            SelectCheckboxByCustomerName(templateName);
+            SelectCheckboxByCustomerName(customerName);
             ClickActionsButton();
             ClickActionsRetire();
             SetRetireReason(retireReason);

@@ -21,7 +21,8 @@ namespace CSET_Selenium.Tests.Domain_Manager.TemplatesTest
         private IWebDriver driver;
         private String template = "computer-repair";
 
-        [Test]
+       [Test]
+       [Ignore("hold of the test until some issues are fixed")]
         public void TemplatesTest()
         {
             BaseConfiguration cf = new BaseConfiguration("https://dm.dev.inltesting.xyz/login");

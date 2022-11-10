@@ -41,7 +41,7 @@ namespace CSET_Selenium.Tests.Con_PCA.CustomerTest
             Assert.IsTrue(foundCustomer, "Didn't find the new customer with the edited ID");
 
             //retire a customer
-            customer.RetireTemplate(Customer.Customer_Name.GetValue(), "Retire");
+            customer.RetireCustomer(Customer.Customer_Name.GetValue(), "Retire");
             customer.ShowRetired();
 
             Assert.IsTrue(customer.FindCustomerByID(newID));

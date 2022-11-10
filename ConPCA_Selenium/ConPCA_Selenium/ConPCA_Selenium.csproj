@@ -213,7 +213,7 @@
     <Compile Include="Page_Objects\Domain_Manager_Page_Obj\Templates\Templates.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\Con_PCA\Customer\CreateNewCustomer.cs" />
+    <Compile Include="Tests\Con_PCA\Customer\CustomerCRUD.cs" />
     <Compile Include="Tests\Con_PCA\LandingPages\LandingPageCreateEditDeleteTest.cs" />
     <Compile Include="Tests\Con_PCA\Login\AccountLogin.cs" />
     <Compile Include="Tests\Con_PCA\Others\TablesColumnsSortingTest.cs" />
