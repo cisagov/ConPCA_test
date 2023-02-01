@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSET_Selenium.Enums.Con_PCA
+﻿namespace ConPCA_Selenium.Enums.Con_PCA
 {
-   
+
     enum YesNo
     {
         Yes, No

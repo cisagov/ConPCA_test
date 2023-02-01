@@ -1,16 +1,16 @@
-﻿using CSET_Selenium.DriverConfiguration;
-using CSET_Selenium.Enums.Con_PCA;
-using CSET_Selenium.Helpers.Con_PCA;
+﻿using ConPCA_Selenium.Enums.Con_PCA;
+using CSET_Selenium.Domain_Manager_Page_Obj.Login_Page;
+using CSET_Selenium.DriverConfiguration;
+using ConPCA_Selenium.Enums.Domain_Manager;
 using CSET_Selenium.Helpers;
+using CSET_Selenium.Helpers.Con_PCA;
+using CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.Applications;
+using CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.SideMenu;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
-using CSET_Selenium.Domain_Manager_Page_Obj.Login_Page;
-using CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.SideMenu;
-using CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.Applications;
-using CSET_Selenium.Enums.Domain_Manager;
 
-namespace CSET_Selenium.Tests.Domain_Manager.ApplicationsCRUD
+namespace ConPCA_Selenium.Tests.Domain_Manager.ApplicationsCRUD
 {
     [TestFixture]
     public class ApplicationCRUDTest : BaseTest
@@ -33,7 +33,7 @@ namespace CSET_Selenium.Tests.Domain_Manager.ApplicationsCRUD
             sideMenu.SelectApplications();
             Applications app = new Applications(driver);
             app.CreateNewApplication(appName);
-            Assert.IsTrue(app.FindApplicationByName(appName), "Didn't find the new application "+appName);
+            Assert.IsTrue(app.FindApplicationByName(appName), "Didn't find the new application " + appName);
 
             //Edit an Application
             app.ClickApplicationsTableRowByName(appName);

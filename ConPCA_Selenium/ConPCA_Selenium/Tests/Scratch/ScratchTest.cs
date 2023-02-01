@@ -1,11 +1,11 @@
 ﻿
+using CSET_Selenium.DriverConfiguration;
+using CSET_Selenium.Helpers;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
-using CSET_Selenium.DriverConfiguration;
-using CSET_Selenium.Helpers;
 
-namespace CSET_Selenium.Tests.Scratch
+namespace ConPCA_Selenium.Tests.Scratch
 {
     [TestFixture]
     public class ScratchTest : BaseTest
@@ -30,7 +30,7 @@ namespace CSET_Selenium.Tests.Scratch
             ///*new BasePage(driver).ClickWhenClickable(ele1);
             //driver.Close();
             String radomString = StringsUtils.GenerateRandomString(10);
-            Console.Write("test case ended "+ radomString);
+            Console.Write("test case ended " + radomString);
         }
     }
 }

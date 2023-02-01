@@ -1,12 +1,7 @@
-﻿using System;
-using System.Reflection;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CSET_Selenium.Helpers;
+﻿using CSET_Selenium.Helpers;
+using System;
 
-namespace CSET_Selenium.Enums
+namespace ConPCA_Selenium.Enums
 {
     public enum States
     {

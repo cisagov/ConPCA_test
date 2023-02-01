@@ -1,5 +1,5 @@
 ﻿using CSET_Selenium.ConPCA_Repository.Con_PCA;
-using CSET_Selenium.Enums.Con_PCA;
+using ConPCA_Selenium.Enums.Con_PCA;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -73,7 +73,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Templates
             }
         }
 
-        
+
         private IWebElement TableTemplates
         {
             get
@@ -147,7 +147,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Templates
             TabTemplateAttributes.Click();
         }
 
-        
+
         private void SetTemplateAttributesTabSubject(String subject)
         {
             TextboxTemplateSubject.SendKeys(subject);
@@ -170,7 +170,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Templates
 
         private void SelectOrganization(YesNo yesNo)
         {
-            if(yesNo == YesNo.Yes)
+            if (yesNo == YesNo.Yes)
             {
                 RadioGroupOrganization.FindElement(By.XPath(".//mat-radio-button[2]")).Click();
             }
@@ -213,13 +213,14 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Templates
         {
             int loop = 0;
             WaitUntilElementIsVisible(TextPageTitle, 2);
-            do {
+            do
+            {
                 TextboxTemplateName.Clear();
                 TextboxTemplateName.SendKeys(Keys.Control + "a" + Keys.Delete);
                 loop++;
                 WaitForPostBack();
-            }while(loop < 5 && TextboxTemplateName.Text.Length > 0);
-            
+            } while (loop < 5 && TextboxTemplateName.Text.Length > 0);
+
             TextboxTemplateName.Click();
             TextboxTemplateName.SendKeys(name);
         }
@@ -239,7 +240,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Templates
 
         public bool NewTemplateButtonPresent()
         {
-            
+
             return CheckIfElementExists(ButtonNewTemplate, 2);
 
         }
@@ -275,7 +276,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Templates
         public void ShowRetired()
         {
             IWebElement showRetired = driver.FindElement(By.XPath("//input[@class='mat-slide-toggle-input cdk-visually-hidden']"));
-            if(showRetired.GetAttribute("aria-checked").Equals("false"))
+            if (showRetired.GetAttribute("aria-checked").Equals("false"))
             {
                 showRetired.FindElement(By.XPath(".//../following-sibling::span")).Click();
             }
@@ -289,7 +290,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Templates
             }
             ClickNewTemplateButton();
             SetTemplateName(templateName);
-            SetHTMLView(templateName + " "+subject);
+            SetHTMLView(templateName + " " + subject);
             SetTemplateSubject(subject);
             SelectOrganization(YesNo.Yes);
             ClickSaveTemplateButton();
@@ -323,7 +324,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Templates
 
         public bool FindTemplateByName(String name)
         {
-            IList<IWebElement>  rows = GetTemplatesTableRows();
+            IList<IWebElement> rows = GetTemplatesTableRows();
             bool foundNewTemplate = false;
             for (var i = 0; i < rows.Count; i++)
             {

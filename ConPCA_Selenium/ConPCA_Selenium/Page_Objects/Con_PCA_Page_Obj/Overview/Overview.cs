@@ -1,7 +1,7 @@
-﻿using OpenQA.Selenium;
-using CSET_Selenium.ConPCA_Repository.Con_PCA;
+﻿using CSET_Selenium.ConPCA_Repository.Con_PCA;
+using ConPCA_Selenium.Enums.Con_PCA;
+using OpenQA.Selenium;
 using System;
-using CSET_Selenium.Enums.Con_PCA;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -74,14 +74,14 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Overview
 
         public string GetAggregateStatisticsOverviewValue(string overviewCategory)
         {
-            return Find(By.XPath("//h3[text() = 'Overview']/following-sibling::div/div/table/tr/td[text() = '"+overviewCategory+"']/following-sibling::td")).Text;
+            return Find(By.XPath("//h3[text() = 'Overview']/following-sibling::div/div/table/tr/td[text() = '" + overviewCategory + "']/following-sibling::td")).Text;
         }
 
         /*Subtype: Subscription Count/Cycle Count/Emails Sent/Email Click Ratio
          */
         public string GetAggregateStatisticsValueByCustomerCategory(CustomerTypes type, string subCategory)
         {
-            return Find(By.XPath("//h3[text() = 'Customer Totals By Category']/following-sibling::table/tr/td/div[contains(text(), '" + type.ToString() + "')]/following-sibling::div/table/tr/td[text()='"+ subCategory + "']/following-sibling::td")).Text;
+            return Find(By.XPath("//h3[text() = 'Customer Totals By Category']/following-sibling::table/tr/td/div[contains(text(), '" + type.ToString() + "')]/following-sibling::div/table/tr/td[text()='" + subCategory + "']/following-sibling::td")).Text;
         }
 
         /*
@@ -91,7 +91,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Overview
             var map = new Dictionary<string, string>();
             string key, value;
             IList<IWebElement> list = driver.FindElements(By.XPath("//h3[text() = 'Overview']/following-sibling::div/div/table[1]/tr"));
-            foreach(var tr in list)
+            foreach (var tr in list)
             {
                 key = tr.FindElement(By.XPath(".//td[1]")).Text;
                 value = tr.FindElement(By.XPath(".//td[2]")).Text;
@@ -108,7 +108,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Overview
         {
             var map = new Dictionary<string, string>();
             string key, value;
-            IList<IWebElement> list = driver.FindElements(By.XPath("//div[text() = '"+type.ToString()+"']/following-sibling::div/table[1]/tr"));
+            IList<IWebElement> list = driver.FindElements(By.XPath("//div[text() = '" + type.ToString() + "']/following-sibling::div/table[1]/tr"));
             foreach (var tr in list)
             {
                 key = tr.FindElement(By.XPath(".//td[1]")).Text;
@@ -122,7 +122,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Overview
         public bool IsPageLoaded(int timeoutInSecondsToWait)
         {
             String spinnerXpath = "//mat-spinner[contains(@class, 'mat-progress-spinner-indeterminate-animation')]";
-    
+
             int secondsToDelay = 2;
             bool spinnerNotShowing = WaitUntilElementIsNotVisible(By.XPath(spinnerXpath), 1000);
             while (!spinnerNotShowing && timeoutInSecondsToWait > 0)

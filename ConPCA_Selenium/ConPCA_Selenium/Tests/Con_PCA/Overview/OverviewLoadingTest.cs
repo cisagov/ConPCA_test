@@ -1,14 +1,14 @@
-﻿using CSET_Selenium.DriverConfiguration;
-using CSET_Selenium.ConPCA_Repository.Login_Page;
-using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.SideMenu;
+﻿using CSET_Selenium.ConPCA_Repository.Login_Page;
+using CSET_Selenium.DriverConfiguration;
+using ConPCA_Selenium.Enums.Con_PCA;
 using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Overview;
-using CSET_Selenium.Enums.Con_PCA;
+using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.SideMenu;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 
-namespace CSET_Selenium.Tests.Con_PCA.OverviewTest
+namespace ConPCA_Selenium.Tests.Con_PCA.OverviewTest
 {
     [TestFixture]
     public class OverviewTest : BaseTest
@@ -29,7 +29,7 @@ namespace CSET_Selenium.Tests.Con_PCA.OverviewTest
             /*test Aggregate Statistics tab*/
             overview.ClickAggregateStatisticsTab();
             Assert.IsTrue(overview.IsPageLoaded(waitForSeconds), "Aggregate Statistics Page is not loaded in limited time.");
-           
+
             Dictionary<string, string> overviewCategoryAndValueMap = overview.GetAggregateStatisticsOverviewItemsAndValues();
             VerifyAggregateStatisticsMap(overviewCategoryAndValueMap);
 

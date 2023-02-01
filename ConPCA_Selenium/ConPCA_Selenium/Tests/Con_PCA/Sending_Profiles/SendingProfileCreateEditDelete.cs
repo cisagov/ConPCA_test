@@ -1,14 +1,14 @@
-﻿using System;
+﻿using CSET_Selenium.ConPCA_Repository.Login_Page;
 using CSET_Selenium.DriverConfiguration;
-using CSET_Selenium.ConPCA_Repository.Login_Page;
+using ConPCA_Selenium.Enums.Con_PCA;
+using CSET_Selenium.Helpers;
+using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.SendingProfiles;
 using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.SideMenu;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using CSET_Selenium.Helpers;
-using CSET_Selenium.Enums.Con_PCA;
-using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.SendingProfiles;
+using System;
 
-namespace CSET_Selenium.Tests.Con_PCA.Sending_Profiles
+namespace ConPCA_Selenium.Tests.Con_PCA.Sending_Profiles
 {
     [TestFixture]
     public class ProfileCreateEditDeleteTest : BaseTest
@@ -20,7 +20,7 @@ namespace CSET_Selenium.Tests.Con_PCA.Sending_Profiles
         {
             BaseConfiguration cf = new BaseConfiguration(Env.Dev.GetValue());
             driver = BuildDriver(cf);
-            String profileDomain = StringsUtils.GenerateRandomString(6, true)+".xyz";
+            String profileDomain = StringsUtils.GenerateRandomString(6, true) + ".xyz";
             LoginPage loginPage = new LoginPage(driver);
             loginPage.LoginToConPCA(LoginInfo.User_Name.GetValue(), LoginInfo.Password.GetValue());
 
@@ -35,7 +35,7 @@ namespace CSET_Selenium.Tests.Con_PCA.Sending_Profiles
             //Edit profile and verify
             profile.UpdateInterfaceType(profileDomain, ProfileInterfaceType.Mailgun);
             String newType = profile.GetCellValueInProfilesTableRow(profile.GetProfilesTableRowByName(profileDomain), 2);
-            String typeShouldBe = ProfileInterfaceType.Mailgun.GetValue();           
+            String typeShouldBe = ProfileInterfaceType.Mailgun.GetValue();
             Assert.IsTrue(String.Equals(newType, typeShouldBe, StringComparison.OrdinalIgnoreCase), "Failed editing Profile.");
 
             //delete a profile and verify

@@ -1,12 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace CSET_Selenium.Helpers
 {
@@ -105,7 +101,8 @@ namespace CSET_Selenium.Helpers
                 if (!jqueryReady)
                 {
                     return NewWait().Until(jQueryLoad);
-                } else
+                }
+                else
                 {
                     return true;
                 }
@@ -125,7 +122,8 @@ namespace CSET_Selenium.Helpers
                 if (!angularReady)
                 {
                     return NewWait().Until(angularLoad);
-                } else
+                }
+                else
                 {
                     return true;
                 }
@@ -145,7 +143,8 @@ namespace CSET_Selenium.Helpers
                 if (!angularReady)
                 {
                     return NewWait().Until(angularLoad);
-                } else
+                }
+                else
                 {
                     return true;
                 }
@@ -251,7 +250,7 @@ namespace CSET_Selenium.Helpers
         }
 
 
-        public void WaitForPostBack(int milisecondsToWait = (120*1000))
+        public void WaitForPostBack(int milisecondsToWait = (120 * 1000))
         {
             try
             {
@@ -409,7 +408,8 @@ namespace CSET_Selenium.Helpers
             if (NewWait(timeoutInMilliseconds).Until(driver => !IsElementVisible(locator)))
             {
                 return true;
-            } else
+            }
+            else
             {
                 return false;
             }

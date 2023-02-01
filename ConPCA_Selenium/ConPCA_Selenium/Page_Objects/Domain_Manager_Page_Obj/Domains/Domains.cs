@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using CSET_Selenium.ConPCA_Repository.Con_PCA;
-using CSET_Selenium.Enums.Con_PCA;
+﻿using CSET_Selenium.ConPCA_Repository.Con_PCA;
 using CSET_Selenium.Helpers.Con_PCA;
 using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 
 
 namespace CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.Domains
@@ -18,7 +16,7 @@ namespace CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.Domains
         {
             this.driver = driver;
             //private TableUtils table = new TableUtils(driver);
-             table = new TableUtils(driver);
+            table = new TableUtils(driver);
         }
 
         //Element Locators
@@ -31,7 +29,7 @@ namespace CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.Domains
             }
         }
 
-       
+
         private IWebElement ButtonAddNewDomainsSubmit
         {
             get
@@ -185,7 +183,7 @@ namespace CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.Domains
                         found = true;
                         break;
                     }
-                }             
+                }
             }
             else
             {
@@ -233,7 +231,7 @@ namespace CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.Domains
             ClickOptionsDelete();
             ClickConfirmFromPopup();
             WaitUntilElementIsNotVisible(By.XPath("//mat-spinner"));
-            
+
         }
 
         public void SearchDomain(String searchString)

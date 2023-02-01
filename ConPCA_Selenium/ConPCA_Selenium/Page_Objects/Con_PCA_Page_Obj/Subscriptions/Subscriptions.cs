@@ -1,15 +1,12 @@
 ﻿using CSET_Selenium.ConPCA_Repository.Con_PCA;
-using CSET_Selenium.DriverConfiguration;
-using CSET_Selenium.Enums.Con_PCA;
+using ConPCA_Selenium.Enums.Con_PCA;
 using CSET_Selenium.Helpers.Con_PCA;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
 {
@@ -209,7 +206,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
             TextboxDeletePopupSubscriptionName.SendKeys(name);
         }
 
-       
+
 
         //Aggregate Methods
         public void CreateNewSubscription()
@@ -323,12 +320,12 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
 
         public String getTitleClassByColumnName(String name)
         {
-            String tmp = GetSubscriptionsTable().FindElement(By.XPath(".//mat-header-cell[//div/div[text() = '"+name+"']]")).GetAttribute("class");
+            String tmp = GetSubscriptionsTable().FindElement(By.XPath(".//mat-header-cell[//div/div[text() = '" + name + "']]")).GetAttribute("class");
             return tmp;
         }
 
         public List<String> GetColumnCellsListByLabelName(String name)
-        {           
+        {
             String classAttributeString = GetSubscriptionsTable().FindElement(By.XPath(".//div[text() = '" + name + "']/ancestor::mat-header-cell")).GetAttribute("class");
             String commonClassText = classAttributeString.Substring(classAttributeString.IndexOf("cdk-column-")); ;
             IList<IWebElement> rows = GetSubscriptionsTableRows();

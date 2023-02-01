@@ -1,18 +1,9 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System;
-
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
+﻿using CSET_Selenium.ConPCA_Repository.Login_Page;
 using CSET_Selenium.DriverConfiguration;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CSET_Selenium.ConPCA_Repository.Login_Page;
+using NUnit.Framework;
+using OpenQA.Selenium;
 
-namespace CSET_Selenium.Tests.Con_PCA
+namespace ConPCA_Selenium.Tests.Con_PCA
 {
     [TestFixture]
     public class AccountLogin : BaseTest

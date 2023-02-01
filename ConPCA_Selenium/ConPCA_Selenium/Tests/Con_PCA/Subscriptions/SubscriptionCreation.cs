@@ -1,16 +1,16 @@
-﻿using System;
+﻿using CSET_Selenium.ConPCA_Repository.Login_Page;
 using CSET_Selenium.DriverConfiguration;
-using CSET_Selenium.ConPCA_Repository.Login_Page;
+using ConPCA_Selenium.Enums.Con_PCA;
+using CSET_Selenium.Helpers;
+using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers;
 using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.SideMenu;
-using CSET_Selenium.Enums.Con_PCA;
+using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers;
+using System;
 using System.Collections.Generic;
-using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions;
-using CSET_Selenium.Helpers;
 
-namespace CSET_Selenium.Tests.Con_PCA.SubscriptionTest
+namespace ConPCA_Selenium.Tests.Con_PCA.SubscriptionTest
 {
     [TestFixture]
     public class SubscriptionCreation : BaseTest

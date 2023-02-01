@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CSET_Selenium.ConPCA_Repository.Con_PCA;
-using CSET_Selenium.Enums.Con_PCA;
+﻿using CSET_Selenium.ConPCA_Repository.Con_PCA;
+using ConPCA_Selenium.Enums.Con_PCA;
 using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 
 namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.SendingProfiles
 {
@@ -66,7 +63,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.SendingProfiles
         {
             ClickWhenClickable(ButtonNewProfile);
         }
-        
+
         private void ClickSaveProfileButton()
         {
             ClickWhenClickable(ButtonSaveProfile);
@@ -106,7 +103,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.SendingProfiles
         public void CreateNewProfile(String domainName)
         {
             ClickNewProfileButton();
-            SetDomainName(domainName);            
+            SetDomainName(domainName);
             ClickSaveProfileButton();
             //ClickOKFromPopup();
         }
@@ -187,5 +184,4 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.SendingProfiles
             ClickYesOrNoFromPopup(YesNo.Yes);
         }
     }
- }
-    
+}

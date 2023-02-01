@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSET_Selenium.Enums.Questions
+﻿namespace CSET_Selenium.Enums.Questions
 {
     public enum ModuleBuilderReqCategories
     {

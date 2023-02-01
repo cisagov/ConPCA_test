@@ -1,5 +1,4 @@
 ﻿using CSET_Selenium.ConPCA_Repository.Con_PCA;
-using CSET_Selenium.Enums.Domain_Manager;
 using CSET_Selenium.Helpers.Con_PCA;
 using OpenQA.Selenium;
 using System;
@@ -128,10 +127,10 @@ namespace CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.Applications
             {
 
                 IList<IWebElement> rows = GetDomainsTableRows();
-                
+
                 for (var i = 0; i < rows.Count; i++)
                 {
-                    
+
                     if (rows[i].Text.Contains(name))
                     {
                         found = true;

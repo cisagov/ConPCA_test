@@ -1,13 +1,11 @@
 ﻿using CSET_Selenium.DriverConfiguration;
-using NUnit.Framework;
-using OpenQA.Selenium;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
-using System.Text;
+using NUnit.Framework;
 using System;
-using static ICSharpCode.SharpZipLib.Zip.ExtendedUnixData;
+using System.Text;
 
-namespace CSET_Selenium.Tests.Con_PCA.Scrach
+namespace ConPCA_Selenium.Tests.Con_PCA.Scrach
 {
     [TestFixture]
     public class PDFContentTest : BaseTest
@@ -17,7 +15,7 @@ namespace CSET_Selenium.Tests.Con_PCA.Scrach
         [Test]
         public void PDFFileTest()
         {
-            
+
             PdfReader.unethicalreading = true;
             PdfReader reader = new PdfReader("C:\\tmp\\CISA_PCA_CYCLE_report.pdf");
 
@@ -38,7 +36,7 @@ namespace CSET_Selenium.Tests.Con_PCA.Scrach
             String section5 = "5. Performance Over Time";
             String section6 = "6. Time Intervals";
 
-            softAssertions.Add("Didn't find section "+ section1, true, reportText.Contains(section1));
+            softAssertions.Add("Didn't find section " + section1, true, reportText.Contains(section1));
             softAssertions.Add("Didn't find section " + section2, true, reportText.Contains(section2));
             softAssertions.Add("Didn't find section " + section3, true, reportText.Contains(section3));
             softAssertions.Add("Didn't find section " + section4, true, reportText.Contains(section4));

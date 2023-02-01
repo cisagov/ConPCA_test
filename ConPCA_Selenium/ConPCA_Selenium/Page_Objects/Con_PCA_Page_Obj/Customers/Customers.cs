@@ -1,14 +1,9 @@
-﻿using CSET_Selenium.DriverConfiguration;
+﻿using CSET_Selenium.ConPCA_Repository.Con_PCA;
+using CSET_Selenium.Enums;
+using ConPCA_Selenium.Enums.Con_PCA;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium.Support.UI;
-using CSET_Selenium.Enums.Con_PCA;
-using CSET_Selenium.Enums;
-using CSET_Selenium.ConPCA_Repository.Con_PCA;
 using System.Threading;
 
 namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
@@ -343,7 +338,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
                 Thread.Sleep(1);
                 count++;
                 buttonDisabled = DeleteCustomerButton.FindElement(By.XPath("parent::button")).GetAttribute("disabled");
-            } while(buttonDisabled != null && count <10);
+            } while (buttonDisabled != null && count < 10);
 
             //WaitUntilElementIsClickable(DeleteCustomerButton, 3);
             DeleteCustomerButton.Click();
@@ -418,30 +413,30 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
 
         public IList<IWebElement> GetCustomerTableRows()
         {
-            IList<IWebElement> rows;           
-            rows =   GetCustomerTable().FindElements(By.TagName("mat-row"));
+            IList<IWebElement> rows;
+            rows = GetCustomerTable().FindElements(By.TagName("mat-row"));
             return rows;
         }
 
         public String GetCustomerNameByRowNumber(int rowNum)
         {
             IList<IWebElement> rows = GetCustomerTableRows();
-            return rows[rowNum - 1].Text.Split('\r')[0];                    
+            return rows[rowNum - 1].Text.Split('\r')[0];
         }
 
         public void ClickCustomersTableEditByIdentifier(String id)
-        {           
-            IList<IWebElement> rows = GetCustomerTableRows();           
+        {
+            IList<IWebElement> rows = GetCustomerTableRows();
             for (var i = 0; i < rows.Count; i++)
             {
                 if (rows[i].FindElement(By.XPath(".//mat-cell[3]")).Text.Equals(id))
-                {   
+                {
                     rows[i].FindElement(By.XPath(".//mat-cell[10]/button")).Click();
                 }
             }
         }
 
-        
+
         public void DeleteContactByRowNumber(int rowNumber)
         {
             GetCustomerOrgContactsTable().FindElement(By.XPath(".//tbody/tr[" + rowNumber + "]/td[6]/button[2]/span/mat-icon[text() = 'delete']")).Click();
@@ -455,7 +450,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
             ClickDeleteCustomerButton();
             ClickConfirmDeleteYesButton();
             //ClickSaveButton();
-            ClickOKButton();          
+            ClickOKButton();
         }
 
         public bool FindCustomerByID(String ID)

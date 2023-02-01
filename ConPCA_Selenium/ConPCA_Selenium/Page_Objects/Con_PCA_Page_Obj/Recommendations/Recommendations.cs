@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CSET_Selenium.ConPCA_Repository.Con_PCA;
-using CSET_Selenium.Enums.Con_PCA;
+﻿using CSET_Selenium.ConPCA_Repository.Con_PCA;
+using ConPCA_Selenium.Enums.Con_PCA;
 using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 
 namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Recommendations
 {
@@ -18,7 +15,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Recommendations
             this.driver = driver;
         }
 
-        
+
 
         //Element Locators
 
@@ -143,7 +140,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Recommendations
         {
             IList<IWebElement> rows = GetRecommendationsTableRows();
             //bool foundRecommendation = false;
-           
+
             for (var i = 0; i < rows.Count; i++)
             {
                 if (rows[i].Text.Contains(name))
@@ -156,7 +153,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Recommendations
 
         public String GetCellValueInRecommendationTableRow(IWebElement row, int cellNumber)
         {
-            return row.FindElement(By.XPath(".//mat-cell["+cellNumber+"]")).Text;
+            return row.FindElement(By.XPath(".//mat-cell[" + cellNumber + "]")).Text;
         }
 
         public void CreateNewRecommendation(String recommTitle, RecommendationType type, String desciption)

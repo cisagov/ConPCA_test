@@ -1,14 +1,14 @@
-﻿using System;
-using CSET_Selenium.DriverConfiguration;
+﻿using ConPCA_Selenium.Enums.Con_PCA;
 using CSET_Selenium.ConPCA_Repository.Login_Page;
+using CSET_Selenium.DriverConfiguration;
+using CSET_Selenium.Helpers;
+using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Recommendations;
 using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.SideMenu;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using CSET_Selenium.Helpers;
-using CSET_Selenium.Enums.Con_PCA;
-using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Recommendations;
+using System;
 
-namespace CSET_Selenium.Tests.Con_PCA.RecommendationsTest
+namespace ConPCA_Selenium.Tests.Con_PCA.RecommendationsTest
 {
     [TestFixture]
     public class RecommendationTest : BaseTest
@@ -32,13 +32,13 @@ namespace CSET_Selenium.Tests.Con_PCA.RecommendationsTest
             Assert.IsTrue(foundNewRecommendation, "Didn't find the new recommendation.");
 
             //Edit the recommendation and verify
-            
+
             recommendation.EditRecommendationType(recommendationTitle, RecommendationType.Sophisticated);
             String newType = recommendation.GetCellValueInRecommendationTableRow(recommendation.GetRecommendationsTableRowByTitle(recommendationTitle), 2);
             String typeShouldBe = RecommendationType.Sophisticated.GetValue();
-            
+
             Assert.IsTrue(String.Equals(newType, typeShouldBe, StringComparison.OrdinalIgnoreCase), "Failed editing recommendation.");
-            
+
 
             //Delete a recommendation
             recommendation.DeleteRecommendationByTitle(recommendationTitle);

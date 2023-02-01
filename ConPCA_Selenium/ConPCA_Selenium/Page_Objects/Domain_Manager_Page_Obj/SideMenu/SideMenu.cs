@@ -82,7 +82,7 @@ namespace CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.SideMenu
             Users.Click();
         }
 
-       
+
         //Aggregate Methods
 
         public void SelectDomains()
@@ -109,6 +109,6 @@ namespace CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.SideMenu
         {
             ClickUsers();
         }
- 
+
     }
 }

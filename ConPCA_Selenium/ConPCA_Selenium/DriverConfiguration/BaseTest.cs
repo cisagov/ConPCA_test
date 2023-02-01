@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
 
 namespace CSET_Selenium.DriverConfiguration
 {
@@ -34,11 +29,14 @@ namespace CSET_Selenium.DriverConfiguration
          */
         public IWebDriver BuildDriver(Object cf)
         {
-            BaseConfiguration baseCF = (BaseConfiguration) cf;
-            if (baseCF.GetHost().Equals("grid")) {
+            BaseConfiguration baseCF = (BaseConfiguration)cf;
+            if (baseCF.GetHost().Equals("grid"))
+            {
 
-            } else {
-        	    //sets variable to not wait for X seconds if running on local
+            }
+            else
+            {
+                //sets variable to not wait for X seconds if running on local
                 //waitForMe = false;
             }
             this.baseTestDriverForListener = new BaseDriverBuilder().BuildWebDriver(cf);

@@ -1,14 +1,14 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using CSET_Selenium.DriverConfiguration;
-using System.Collections.Generic;
+﻿using ConPCA_Selenium.Enums.Con_PCA;
 using CSET_Selenium.ConPCA_Repository.Login_Page;
-using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.SideMenu;
-using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers;
-using CSET_Selenium.Enums.Con_PCA;
+using CSET_Selenium.DriverConfiguration;
+using ConPCA_Selenium.Enums.Con_PCA;
 using CSET_Selenium.Helpers;
+using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers;
+using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.SideMenu;
+using NUnit.Framework;
+using OpenQA.Selenium;
 
-namespace CSET_Selenium.Tests.Con_PCA.CustomerTest
+namespace ConPCA_Selenium.Tests.Con_PCA.CustomerTest
 {
     [TestFixture]
     public class CreateEditDeleteCustomer : BaseTest
@@ -29,14 +29,14 @@ namespace CSET_Selenium.Tests.Con_PCA.CustomerTest
 
             /*create a new customer and validate */
             Customers customer = new Customers(driver);
-            customer.CreateNewCustomer(Enums.Con_PCA.CustomerTypes.Federal);          
+            customer.CreateNewCustomer(CustomerTypes.Federal);
             bool foundCustomer = customer.FindCustomerByID(Customer.Customer_Identifier.GetValue());
             Assert.IsTrue(foundCustomer, "Didn't find the new customer");
 
             /*edit the customer*/
             var newID = StringsUtils.GenerateRandomString(10);
             customer.ClickCustomersTableEditByIdentifier(Customer.Customer_Identifier.GetValue());
-            customer.EditCustomerIdentifier(newID);          
+            customer.EditCustomerIdentifier(newID);
             foundCustomer = customer.FindCustomerByID(newID);
             Assert.IsTrue(foundCustomer, "Didn't find the new customer with the edited ID");
 
@@ -53,7 +53,7 @@ namespace CSET_Selenium.Tests.Con_PCA.CustomerTest
             customer.ShowRetired();
 
             Assert.IsFalse(customer.FindCustomerByID(newID), "The customer was not successfully deleted.");
-            
+
         }
     }
 }

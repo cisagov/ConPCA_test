@@ -1,4 +1,4 @@
-﻿using CSET_Selenium.Enums.Con_PCA;
+﻿using ConPCA_Selenium.Enums.Con_PCA;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
@@ -10,7 +10,7 @@ namespace CSET_Selenium.Helpers.Con_PCA
     class TableUtils
     {
         private readonly IWebDriver driver;
- 
+
         public TableUtils(IWebDriver driver)
         {
             this.driver = driver;

@@ -1,16 +1,11 @@
-﻿using CSET_Selenium.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
-namespace CSET_Selenium.Enums.Con_PCA
+namespace ConPCA_Selenium.Enums.Con_PCA
 {
-    
+
     public enum Customer
 
-    {   
+    {
         [CustomerAttr("ConPCA Automation")] Customer_Name,
         [CustomerAttr("test@inl.gov")] Customer_Email,
         [CustomerAttr("John")] First_Name,

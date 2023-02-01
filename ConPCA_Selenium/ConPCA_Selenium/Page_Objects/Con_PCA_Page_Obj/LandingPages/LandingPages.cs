@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using CSET_Selenium.ConPCA_Repository.Con_PCA;
-using CSET_Selenium.Enums.Con_PCA;
+﻿using CSET_Selenium.ConPCA_Repository.Con_PCA;
+using ConPCA_Selenium.Enums.Con_PCA;
 using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 
 namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.LandingPages
 {
@@ -88,12 +88,14 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.LandingPages
 
         //Aggregate Methods
         public void SetLandingPageName(String name)
-        {   
+        {
             int i = 0;
-            do { TextboxLandingPageName.SendKeys(Keys.Control + "a");
+            do
+            {
+                TextboxLandingPageName.SendKeys(Keys.Control + "a");
                 TextboxLandingPageName.SendKeys(Keys.Delete);
                 i++;
-            }while((!TextboxLandingPageName.Text.Equals("")) && i<3);
+            } while ((!TextboxLandingPageName.Text.Equals("")) && i < 3);
             TextboxLandingPageName.SendKeys(name);
         }
 
@@ -160,7 +162,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.LandingPages
         {
             ClickEditButtonByLandingPageName(pageName);
             ClickDeletePageButton();
-            ClickYesOrNoFromPopup(YesNo.Yes);           
+            ClickYesOrNoFromPopup(YesNo.Yes);
         }
     }
 }

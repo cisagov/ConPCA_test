@@ -1,10 +1,6 @@
 ﻿using CSET_Selenium.DriverConfiguration;
 using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSET_Selenium.Domain_Manager_Page_Obj.Login_Page
 {
@@ -17,7 +13,7 @@ namespace CSET_Selenium.Domain_Manager_Page_Obj.Login_Page
             this.driver = driver;
         }
 
-       
+
         private IWebElement TextboxUserName
         {
             get

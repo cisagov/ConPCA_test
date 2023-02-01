@@ -3,9 +3,6 @@ using CSET_Selenium.Helpers.Con_PCA;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.Templates
 {
@@ -40,7 +37,7 @@ namespace CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.Templates
             }
         }
 
-        
+
 
         //Interaction Methods
         private void ClickUploadTemplateButton()
@@ -70,7 +67,7 @@ namespace CSET_Selenium.Page_Objects.Domain_Manager_Page_Obj.Templates
 
         public void ClickTab(String tabName)
         {
-            Find(By.XPath(".//div[@role = 'tab']/div[contains(text(), '"+tabName+"')]")).Click();
+            Find(By.XPath(".//div[@role = 'tab']/div[contains(text(), '" + tabName + "')]")).Click();
         }
 
         public List<String> GetDomainsUsingTabDomainNameList()

@@ -1,14 +1,11 @@
-﻿using CSET_Selenium.Enums;
+﻿using ConPCA_Selenium.Enums;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Safari;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium.Edge;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Safari;
 //using OpenQA.Selenium.Opera;
 
 namespace CSET_Selenium.DriverConfiguration

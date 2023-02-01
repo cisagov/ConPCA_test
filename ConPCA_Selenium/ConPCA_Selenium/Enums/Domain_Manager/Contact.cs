@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CSET_Selenium.Enums.Domain_Manager
+namespace ConPCA_Selenium.Enums.Domain_Manager
 {
     public enum Contact
 

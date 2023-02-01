@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CSET_Selenium.DriverConfiguration;
-using CSET_Selenium.Enums.Con_PCA;
+﻿using CSET_Selenium.DriverConfiguration;
+using ConPCA_Selenium.Enums.Con_PCA;
 using OpenQA.Selenium;
+using System;
 
 namespace CSET_Selenium.ConPCA_Repository.Con_PCA
 {
@@ -52,7 +48,8 @@ namespace CSET_Selenium.ConPCA_Repository.Con_PCA
             try
             {
                 WaitUntilElementIsNotVisible(By.XPath("//mat-spinner"));
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
 
             }

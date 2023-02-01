@@ -1,10 +1,6 @@
 ﻿using CSET_Selenium.DriverConfiguration;
 using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSET_Selenium.ConPCA_Repository.Login_Page
 {
@@ -17,7 +13,7 @@ namespace CSET_Selenium.ConPCA_Repository.Login_Page
             this.driver = driver;
         }
 
-       
+
         private IWebElement TextboxUserName
         {
             get
@@ -99,7 +95,7 @@ namespace CSET_Selenium.ConPCA_Repository.Login_Page
 
         public void LoginToConPCA(String userName, String password)
         {
-            
+
             SetUserName(userName);
             SetPassword(password);
             ClickLoginButton();
