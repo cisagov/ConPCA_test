@@ -7,6 +7,7 @@ using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using NUnit.Framework;
 
 namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
 {
@@ -358,6 +359,31 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
             ClickDeletePopupDeleteLink();
             Thread.Sleep(2);
             //WaitUntilElementIsVisible(table.GetCommonTable(), 2);
+        }
+
+        public void ClickSubscriptionTableRowByName(String subscriptionName)
+        {
+            IList<IWebElement> rows = GetSubscriptionsTableRows();
+            for (var i = 0; i < rows.Count; i++)
+            {
+                if (rows[i].FindElement(By.XPath(".//mat-cell[1]")).Text.Equals(subscriptionName))
+                {
+                    rows[i].FindElement(By.XPath(".//mat-cell[1]")).Click();
+                    break;
+                }
+            }
+        }
+
+        public String GetSubscriptionNameByRowNumber(int rowNum)
+        {
+            IList<IWebElement> rows = GetSubscriptionsTableRows();
+            return rows[rowNum - 1].Text.Split('\r')[0].Replace("\n", "");
+        }
+
+        public bool CheckIfWarningExists(string warningMsg, int millionSec)
+        {
+            return CheckIfElementExists(Find(By.XPath("//mat-error[contains(text(), '" + warningMsg+"')]")), millionSec);
+            //return CheckIfElementExists(Find(By.XPath("//div/*[contains(text(), '" + warningMsg + "']")), millionSec);
         }
     }
 }

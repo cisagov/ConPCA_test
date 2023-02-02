@@ -137,12 +137,12 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Templates
             ButtonNewTemplate.Click();
         }
 
-        private void ClickSaveTemplateButton()
+        public void ClickSaveTemplateButton()
         {
             ButtonSaveTemplate.Click();
         }
 
-        private void ClickTemplateAttributesTab()
+        public void ClickTemplateAttributesTab()
         {
             TabTemplateAttributes.Click();
         }
@@ -335,6 +335,40 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Templates
                 }
             }
             return foundNewTemplate;
+        }
+
+        public void ClickTemplateTableRowByName(String templatenName)
+        {
+            IList<IWebElement> rows = GetTemplatesTableRows();
+            for (var i = 0; i < rows.Count; i++)
+            {
+                if (rows[i].FindElement(By.XPath(".//mat-cell[1]")).Text.Equals(templatenName))
+                {
+                    rows[i].FindElement(By.XPath(".//mat-cell[1]")).Click();
+                    break;
+                }
+            }
+        }
+
+        public String GetTemplateNameByRowNumber(int rowNum)
+        {
+            IList<IWebElement> rows = GetTemplatesTableRows();
+            return rows[rowNum - 1].Text.Split('\r')[0].Replace("\n", "");
+        }
+
+        public IWebElement GetTemplateAttTabFromAddress()
+        {
+            return Find(By.XPath("//input[@formcontrolname = 'templateFromDisplayName']"));
+        }
+
+        public bool IfElementExists(IWebElement element, int millionSec)
+        {
+            return CheckIfElementExists(element, millionSec);
+        }
+
+        public IWebElement GetTemplateSavedPopup()
+        {
+            return Find(By.XPath("//h1[text() = 'Template Saved']"));
         }
     }
 }

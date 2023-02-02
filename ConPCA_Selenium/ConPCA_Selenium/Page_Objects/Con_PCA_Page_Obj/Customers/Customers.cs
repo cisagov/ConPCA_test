@@ -5,6 +5,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using AngleSharp.Io;
 
 namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
 {
@@ -243,7 +244,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
             ButtonNewCustomerOrgContactsAdd.Click();
         }
 
-        private void ClickSaveCustomerButton()
+        public void ClickSaveCustomerButton()
         {
             ButtonSaveCustomer.Click();
         }
@@ -299,7 +300,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
             driver.FindElement(By.XPath("//mat-option/span[contains(text(), '" + state + "')]")).Click();
         }
 
-        private void SetCustomerZIP(String zip)
+        public void SetCustomerZIP(String zip)
         {
             ClickWhenClickable(TextboxCustomerZIP);
             TextboxCustomerZIP.SendKeys(zip);
@@ -424,6 +425,42 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
             return rows[rowNum - 1].Text.Split('\r')[0];
         }
 
+        public String GetCustomerIdentifierByRowNumber(int rowNum)
+        {
+            IList<IWebElement> rows = GetCustomerTableRows();
+            return rows[rowNum - 1].Text.Split('\r')[1].Replace("\n", "");
+        }
+
+        public String GetCustomerShortNameByRowNumber(int rowNum)
+        {
+            IList<IWebElement> rows = GetCustomerTableRows();
+            return rows[rowNum - 1].Text.Split('\r')[2].Replace("\n", "");
+        }
+
+        public String GetCustomerAddress1ByRowNumber(int rowNum)
+        {
+            IList<IWebElement> rows = GetCustomerTableRows();
+            return rows[rowNum - 1].Text.Split('\r')[3].Replace("\n", "");
+        }
+
+        public String GetCustomerCityByRowNumber(int rowNum)
+        {
+            IList<IWebElement> rows = GetCustomerTableRows();
+            return rows[rowNum - 1].Text.Split('\r')[4].Replace("\n", "");
+        }
+
+        public String GetCustomerStateByRowNumber(int rowNum)
+        {
+            IList<IWebElement> rows = GetCustomerTableRows();
+            return rows[rowNum - 1].Text.Split('\r')[5].Replace("\n", "");
+        }
+
+        public String GetCustomerZipByRowNumber(int rowNum)
+        {
+            IList<IWebElement> rows = GetCustomerTableRows();
+            return rows[rowNum - 1].Text.Split('\r')[6].Replace("\n", "");
+        }
+
         public void ClickCustomersTableEditByIdentifier(String id)
         {
             IList<IWebElement> rows = GetCustomerTableRows();
@@ -432,6 +469,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
                 if (rows[i].FindElement(By.XPath(".//mat-cell[3]")).Text.Equals(id))
                 {
                     rows[i].FindElement(By.XPath(".//mat-cell[10]/button")).Click();
+                    break;
                 }
             }
         }
@@ -498,6 +536,30 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers
                 showRetired.FindElement(By.XPath(".//../following-sibling::span")).Click();
             }
         }
+        /*
+         * The following methods are for Edit Customer page
+         */
+        public string GetSelectedState()
+        {
+            return Find(By.XPath("//mat-select[@placeholder = 'State']/div/div/span/span")).Text;
+        }
+
+        public IWebElement GetUnsaveChangesPopup()
+        {
+            return Find(By.XPath("//mat-dialog-container/app-unsaved/h1[text() = 'Unsaved Changes']"));
+        }
+
+        public bool IfElementExists(IWebElement element, int millionSec)
+        {
+            return CheckIfElementExists(element, millionSec);
+        }
+        //public String GetEditCustomerName()
+        //{
+        //    //return Find(By.XPath("//input[@data-placeholder ='Customer/Organization Name']")).;
+        //    //driver.FindElement(By.XPath("//input[@formcontrolname ='customerName']")).Text;
+
+        //    string tmp = Request.
+        //}
 
         //public void DeleteCustomerByID(String ID)
         //{

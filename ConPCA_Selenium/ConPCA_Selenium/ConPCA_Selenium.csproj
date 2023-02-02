@@ -234,6 +234,7 @@
     <Compile Include="Tests\Con_PCA\Customer\CustomerCRUD.cs" />
     <Compile Include="Tests\Con_PCA\LandingPages\LandingPageCreateEditDeleteTest.cs" />
     <Compile Include="Tests\Con_PCA\Login\AccountLogin.cs" />
+    <Compile Include="Tests\Con_PCA\Others\InputValidation.cs" />
     <Compile Include="Tests\Con_PCA\Others\TablesColumnsSortingTest.cs" />
     <Compile Include="Tests\Con_PCA\Overview\OverviewLoadingTest.cs" />
     <Compile Include="Tests\Con_PCA\Recommendations\RecommendationCreateEditDeleteTest.cs" />
