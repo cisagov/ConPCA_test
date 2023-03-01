@@ -1,4 +1,5 @@
-﻿using CSET_Selenium.Enums;
+﻿using ConPCA_Selenium.Enums.Con_PCA;
+using CSET_Selenium.Enums;
 using CSET_Selenium.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
@@ -618,6 +619,20 @@ namespace CSET_Selenium.DriverConfiguration
             textBox.SendKeys(Keys.Control + "a");
             textBox.SendKeys(text);
             textBox.SendKeys(Keys.Tab);
+        }
+
+        public void ClickYesOrNoFromPopup(YesNo yesNo)
+        {
+            
+            ClickWhenClickable(By.XPath("//mat-dialog-actions//button/span[contains(text(), '"+yesNo.ToString()+"')]"));
+            WaitForPostBack();
+        }
+
+        public void ClickOKFromPopup()
+        {
+
+            ClickWhenClickable(By.XPath("//mat-dialog-actions/button/span[contains(text(), 'OK')]"));
+            WaitForPostBack();
         }
 
         //Not Yet Implemented

@@ -120,6 +120,30 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
             }
         }
 
+        private IWebElement ButtonLaunch
+        {
+            get
+            {
+                return WaitUntilElementIsVisible(By.XPath("//button[text() ='Launch ']"));
+            }
+        }
+
+        private IWebElement ButtonStop
+        {
+            get
+            {
+                return WaitUntilElementIsVisible(By.XPath("//button[text() ='Stop ']"));
+            }
+        }
+
+        private IWebElement ButtonOpenCalendar
+        {
+            get
+            {
+                return WaitUntilElementIsVisible(By.XPath("//button[@aria-label ='Open calendar']"));
+            }
+        }
+
         private IWebElement LinkActionsDelete
         {
             get
@@ -160,6 +184,30 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
             }
         }
 
+        private IWebElement TabCycles
+        {
+            get
+            {
+                return WaitUntilElementIsVisible(By.XPath("//div[@role = 'tab']/div[text() = 'Cycles']"));
+            }
+        }
+
+        private IWebElement TabSubscriptionConfiguration
+        {
+            get
+            {
+                return WaitUntilElementIsVisible(By.XPath("//div[@role = 'tab']/div[text() = 'Subscription Configuration']"));
+            }
+        }
+
+        private IWebElement ButtonSaveSubscription
+        {
+            get
+            {
+                return WaitUntilElementIsVisible(By.XPath("//div[text() = 'Save Subscription']"));
+            }
+        }
+
         //Interaction Methods
 
         private void ClickNewSubscriptionButton()
@@ -167,9 +215,39 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
             ButtonNewSubscription.Click();
         }
 
+        private void ClickSaveSubscriptionButton()
+        {
+            ButtonSaveSubscription.Click();
+        }
+
+        public void ClickCyclesTab()
+        {
+            TabCycles.Click();
+        }
+
+        public void ClickSubscriptionConfigurationTab()
+        {
+            TabSubscriptionConfiguration.Click();
+        }
+
         private void ClickActionsButton()
         {
             ButtonActions.Click();
+        }
+
+        private void ClickOpenCalendar()
+        {
+            ButtonOpenCalendar.Click();
+        }
+
+        private void ClickLaunchButton()
+        {
+            ButtonLaunch.Click();
+        }
+
+        private void ClickStopButton()
+        {
+            ButtonStop.Click();
         }
 
         private void ClickActionsDeleteLink()
@@ -372,9 +450,43 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
                     break;
                 }
             }
+            WaitUntilElementIsVisible(Find(By.XPath(".//div[text() = 'Subscription Configuration']")));
+        }
+        /*
+         * provide column title and a cell text in the column, return the subscription name
+         */
+        public void ClickSubscriptionTableRowByColumnLable(string columnLabel, string cellText)
+        {
+            IList<IWebElement> tableRows = GetSubscriptionsTableRows();
+            IWebElement table = GetSubscriptionsTable();
+            string classAtrribute = GetSubscriptionsTable().FindElement(By.XPath(".//mat-header-row//mat-header-cell[div/div[text() = '" + columnLabel + "']]")).GetAttribute("class");
+            string[] classAtrributeSplitted = classAtrribute.Split(' ');
+            string commonAttributeWithMatCell = classAtrributeSplitted[4] + " " + classAtrributeSplitted[5];
+
+            table.FindElement(By.XPath(".//mat-row//mat-cell[contains(text(), '" + cellText + "')]")).Click();
+
+            WaitUntilElementIsVisible(Find(By.XPath(".//div[text() = 'Subscription Configuration']")));
+            
+        }
+        /*
+         *get the name on Edit page 
+         */
+        public string GetSubscriptionName()
+        {
+            // string tmp = driver.FindElement(By.XPath(".//div[@class = 'header-title']/h1")).Text;
+            string nameWithStatus = driver.FindElement(By.XPath(".//div[@class = 'header-title']/h1")).Text.Split(':')[1].Trim();
+            if (nameWithStatus.Contains("("))
+            {
+                return nameWithStatus.Split('(')[0].Trim();
+            }
+            else
+            {
+                return nameWithStatus;
+            }
+            
         }
 
-        public String GetSubscriptionNameByRowNumber(int rowNum)
+            public String GetSubscriptionNameByRowNumber(int rowNum)
         {
             IList<IWebElement> rows = GetSubscriptionsTableRows();
             return rows[rowNum - 1].Text.Split('\r')[0].Replace("\n", "");
@@ -384,6 +496,39 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
         {
             return CheckIfElementExists(Find(By.XPath("//mat-error[contains(text(), '" + warningMsg+"')]")), millionSec);
             //return CheckIfElementExists(Find(By.XPath("//div/*[contains(text(), '" + warningMsg + "']")), millionSec);
+        }
+
+        public void LaunchSubscription()
+        {
+            ClickActionsButton();
+            ClickLaunchButton();
+
+            if (CheckIfElementExists(Find(By.XPath("//mat-error[contains(text(), 'Start Date cannot be in the past')]")), 1))
+            {
+                ClickOpenCalendar();
+                Find(By.XPath("//div[contains(@class, 'mat-calendar-body-today')]")).Click();
+                ClickActionsButton();
+                ClickLaunchButton();
+                ClickSaveSubscriptionButton();
+                ClickOKFromPopup();
+            }
+           
+            ClickYesOrNoFromPopup(YesNo.Yes);
+            ClickOKFromPopup();
+        }
+
+        public void StopSubscription()
+        {
+            ClickActionsButton();
+            ClickLaunchButton();     
+            ClickYesOrNoFromPopup(YesNo.Yes);
+            ClickOKFromPopup();
+        }
+
+        public string GetCycleReportDownloadButtonAttribute(string attributeName)
+        {
+            return Find(By.XPath("//th[text() = 'Cycle']/following-sibling::td/button")).GetAttribute(attributeName);
+            
         }
     }
 }
