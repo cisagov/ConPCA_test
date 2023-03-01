@@ -367,14 +367,20 @@ namespace CSET_Selenium.Helpers
         public IWebElement WaitUntilElementIsVisible(By locator, int waitInMilliseconds)
         {
             WaitForPageLoad();
-            NewWait(waitInMilliseconds).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
+            try
+            {
+                NewWait(waitInMilliseconds).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
+            }catch(Exception ex) { }
             return driver.FindElement(locator);
         }
 
         public IWebElement WaitUntilElementIsVisible(IWebElement ele, int waitInMilliseconds)
         {
             WaitForPageLoad();
-            RetryUntilSuccessOrTimeout(new Func<bool>(() => IsElementVisible(ele)), waitInMilliseconds, 100);
+            try
+            {
+                RetryUntilSuccessOrTimeout(new Func<bool>(() => IsElementVisible(ele)), waitInMilliseconds, 100);
+            }catch(Exception ex) { }
             return ele;
         }
 

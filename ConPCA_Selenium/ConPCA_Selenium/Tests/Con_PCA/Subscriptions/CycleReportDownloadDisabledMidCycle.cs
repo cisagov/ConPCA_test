@@ -1,8 +1,6 @@
 ﻿using ConPCA_Selenium.Enums.Con_PCA;
 using CSET_Selenium.ConPCA_Repository.Login_Page;
 using CSET_Selenium.DriverConfiguration;
-using CSET_Selenium.Helpers;
-using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Customers;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions;
@@ -10,8 +8,6 @@ using CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.SideMenu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSET_Selenium.Tests.Con_PCA.SubscriptionsCycleReport
 {
@@ -45,10 +41,9 @@ namespace CSET_Selenium.Tests.Con_PCA.SubscriptionsCycleReport
             IList<IWebElement> rows = subscription.GetSubscriptionsTableRows();
             bool subscriptionRunning = rows.Any(
                 fb => (fb.Text.Contains(subName)) && (fb.Text.Contains("Running"))
-                //fb => (fb.Text.Contains(subName))
             );
 
-            //Assert.IsFalse(customer.FindCustomerByID(newID), "The customer was not successfully deleted.");
+            Assert.IsTrue(subscriptionRunning, "The subscription was not successfully launched.");
 
             /*
              * Verify the cycle report
@@ -56,7 +51,20 @@ namespace CSET_Selenium.Tests.Con_PCA.SubscriptionsCycleReport
              */
             subscription.ClickSubscriptionTableRowByName(subName);
             subscription.ClickCyclesTab();
-            Assert.IsFalse(subscription.GetCycleReportDownloadButtonAttribute("disabled").Equals("true"), "The Cycle report download button is not disabled.");
+            Assert.IsTrue(subscription.GetCycleReportDownloadButtonAttribute("disabled").Equals("true"), "The Cycle report download button is not disabled.");
+
+            /*
+             * stop subscription
+             */
+            subscription.ClickSubscriptionConfigurationTab();
+            subscription.StopSubscription();
+            sideMenu.SelectSubscriptions();
+            rows = subscription.GetSubscriptionsTableRows();
+            subscriptionRunning = rows.Any(
+                fb => (fb.Text.Contains(subName)) && (fb.Text.Contains("Stopped"))              
+            );
+
+            Assert.IsTrue(subscriptionRunning, "The subscription was not successfully stopped.");
             Console.WriteLine("hello");
         }
     }

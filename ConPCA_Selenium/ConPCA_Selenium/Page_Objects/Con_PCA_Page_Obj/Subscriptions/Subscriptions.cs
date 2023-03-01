@@ -223,11 +223,13 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
         public void ClickCyclesTab()
         {
             TabCycles.Click();
+            WaitUntilElementIsVisible(Find(By.XPath(".//mat-card-title[text() = 'Cycles']")), 2);
         }
 
         public void ClickSubscriptionConfigurationTab()
         {
             TabSubscriptionConfiguration.Click();
+            WaitUntilElementIsVisible(Find(By.XPath(".//h2[text() = 'Customer/Organization']")), 2);
         }
 
         private void ClickActionsButton()
@@ -450,7 +452,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
                     break;
                 }
             }
-            WaitUntilElementIsVisible(Find(By.XPath(".//div[text() = 'Subscription Configuration']")));
+            WaitUntilElementIsVisible(Find(By.XPath(".//div[text() = 'Subscription Configuration']")), 2);
         }
         /*
          * provide column title and a cell text in the column, return the subscription name
@@ -464,8 +466,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
             string commonAttributeWithMatCell = classAtrributeSplitted[4] + " " + classAtrributeSplitted[5];
 
             table.FindElement(By.XPath(".//mat-row//mat-cell[contains(text(), '" + cellText + "')]")).Click();
-
-            WaitUntilElementIsVisible(Find(By.XPath(".//div[text() = 'Subscription Configuration']")));
+            WaitUntilElementIsVisible(By.XPath("//h1[contains(text(), 'Edit Subscription:')]"),3);
             
         }
         /*
@@ -473,7 +474,8 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
          */
         public string GetSubscriptionName()
         {
-            // string tmp = driver.FindElement(By.XPath(".//div[@class = 'header-title']/h1")).Text;
+            string tmp = driver.FindElement(By.XPath(".//div[@class = 'header-title']/h1")).Text;
+            Console.WriteLine("Title is : "+tmp);
             string nameWithStatus = driver.FindElement(By.XPath(".//div[@class = 'header-title']/h1")).Text.Split(':')[1].Trim();
             if (nameWithStatus.Contains("("))
             {
@@ -503,14 +505,14 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
             ClickActionsButton();
             ClickLaunchButton();
 
-            if (CheckIfElementExists(Find(By.XPath("//mat-error[contains(text(), 'Start Date cannot be in the past')]")), 1))
+            if (CheckIfElementExists("//mat-error[contains(text(), 'Start Date cannot be in the past')]", 1))
             {
                 ClickOpenCalendar();
                 Find(By.XPath("//div[contains(@class, 'mat-calendar-body-today')]")).Click();
-                ClickActionsButton();
-                ClickLaunchButton();
                 ClickSaveSubscriptionButton();
                 ClickOKFromPopup();
+                ClickActionsButton();
+                ClickLaunchButton();             
             }
            
             ClickYesOrNoFromPopup(YesNo.Yes);
@@ -520,7 +522,7 @@ namespace CSET_Selenium.Page_Objects.Con_PCA_Page_Obj.Subscriptions
         public void StopSubscription()
         {
             ClickActionsButton();
-            ClickLaunchButton();     
+            ClickStopButton();     
             ClickYesOrNoFromPopup(YesNo.Yes);
             ClickOKFromPopup();
         }

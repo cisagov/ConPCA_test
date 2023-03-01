@@ -437,25 +437,28 @@ namespace CSET_Selenium.DriverConfiguration
             try
             {
                 WaitUntilElementIsVisible(element, checktimeInMilliseconds);
-                return true;
+                //return true;
             }
-            catch (Exception var4)
+            catch (NoSuchElementException var4)
             {
                 return false;
             }
+            return true;
         }
 
         public bool CheckIfElementExists(String xpath, int checktimeInMilliseconds)
         {
-            int normalizedTime = TimeFixer(checktimeInMilliseconds);
-            bool found = Finds(By.XPath(xpath)).Count > 0;
 
-            for (int i = 0; !found && i < normalizedTime; ++i)
+            try
             {
-                this.Sleep(1000);
-                found = Finds(By.XPath(xpath)).Count > 0;
+                WaitUntilElementIsVisible(Find(By.XPath(xpath)), checktimeInMilliseconds);
+                //return true;
             }
-            return found;
+            catch (NoSuchElementException var4)
+            {
+                return false;
+            }
+            return true;
         }
 
         public String GetXpathFromElement(IWebElement element)
